@@ -6,7 +6,13 @@ const PublicRoute: FC<{ children: ReactNode }> = ({ children }) => {
     ? JSON.parse(localStorage.getItem("auth") as string)
     : null;
 
-  return authData ? <Navigate to="/dashboard" /> : <>{children}</>;
+  return authData ? (
+    <>
+      <Navigate to="/dashboard" />
+    </>
+  ) : (
+    <>{children}</>
+  );
 };
 
 export default PublicRoute;

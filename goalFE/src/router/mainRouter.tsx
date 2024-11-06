@@ -6,6 +6,7 @@ import HomePageScreen from "@/pages/home/HomePageScreen";
 import LandingPageScreen from "@/pages/screen/LandingPageScreen";
 import { createBrowserRouter } from "react-router-dom";
 import PrivateRoute from "./privateRoute";
+import PublicRoute from "./publicRoute";
 
 export const mainRouter = createBrowserRouter([
   {
@@ -24,13 +25,18 @@ export const mainRouter = createBrowserRouter([
   },
   {
     path: "/auth",
-    element: <AuthLayout />,
+    element: (
+      <PublicRoute>
+        <AuthLayout />
+      </PublicRoute>
+    ),
     children: [
       {
         index: true,
         element: <RegisterScreen />,
       },
       {
+        index: true,
         path: "login",
         element: <LoginScreen />,
       },
@@ -38,6 +44,10 @@ export const mainRouter = createBrowserRouter([
   },
   {
     path: "/",
-    element: <LandingPageScreen />,
+    element: (
+      <PublicRoute>
+        <LandingPageScreen />
+      </PublicRoute>
+    ),
   },
 ]);
